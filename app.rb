@@ -2,6 +2,7 @@ require 'sinatra'
 require 'httparty'
 require 'nokogiri'
 require 'uri'
+require 'date' #현재 시간을 알기 위해 사용
 
 #simple routing 
 get '/' do
@@ -58,5 +59,23 @@ get '/search' do
     text = Nokogiri::HTML(res.body)
     @win = text.css("#SummonerLayoutContent > div.tabItem.Content.SummonerLayoutContent.summonerLayout-summary > div.SideContent > div.TierBox.Box > div.SummonerRatingMedium > div.TierRankInfo > div.TierInfo > span.WinLose > span.wins")
     @lose = text.css("#SummonerLayoutContent > div.tabItem.Content.SummonerLayoutContent.summonerLayout-summary > div.SideContent > div.TierBox.Box > div.SummonerRatingMedium > div.TierRankInfo > div.TierInfo > span.WinLose > span.losses")
+    
+    # File.open("log.txt","a+") do |f|
+    #     f.write("#{@id}, #{@win.text}, #{@lose.text}" + Time.now.to_s + "\n")
+    # end
+    
+    CSV.open('log.csv','a+') do |csv|
+        csv << [@id, @win.text ,@lose.text, Time.now.to_s]
+    end
+        
     erb :search
+end
+
+get '/log' do
+    @log = []
+    CSV.foreach('log.csv') do |row|
+        #row.class --> array
+        @log << row  #@log의 모양은 이중배열[[],[],[],[],[]....]
+    end
+    erb :log
 end

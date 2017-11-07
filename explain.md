@@ -41,7 +41,9 @@ https://www.naver.com/  # 주소에 get http요청을 통해서 /에 있는 정�
 
 > "".gsub(" ","+")  #global substitution의 의미이다. " "이 바꾸고 싶은 문자, "+"이 새로 들어갈 문자
 
-승률 찾을 때 ㅠㅠㅠ마우스 오른쪽 클릭 -> 검사 클릭
 require 'uri'
 URI.encode("한국어가 가능")
 URI.decode("")
+
+- Time.now.inspect.class #현재 시간을 보여주는 Time.now.inpect의 형을 알 수 있다.(String으로 나옴)
+- https://www.heroku.com/
