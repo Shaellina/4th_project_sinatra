@@ -13,7 +13,7 @@
 > arr.each {puts "hello"}
 > arr.each{|p| puts p}
 
-> gem install sinatra  # Sinatra is a DSL for quickly creating web applications in Ruby with minimal effort:
+> gem install sinatra  # Sinatra is a DSL for quickly creating web applications in Ruby with minimal effort
 > gem install thin     # A small and fast Ruby web server
 > echo $PORT
 > echo $IP
